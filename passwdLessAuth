@@ -1,0 +1,10 @@
+# inside server
+sudo passwd ubuntu # set any password
+vi /etc/ssh/sshd_config.d/60-cloudimg-settings.conf # PasswordAuthentication yes
+sudo systemctl restart ssh
+# back to local system
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+eval "$(ssh-agent -s)"  # Start the SSH agent
+ssh-add ~/.ssh/id_rsa   # Add your private key
+ssh-copy-id ubuntu@ip
+ssh ubuntu@ip
